@@ -1,4 +1,4 @@
-var http = require('http');
+let http = require('http');
 
 let port = 8080;
 
