@@ -10,11 +10,15 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 
-
+// For initial get request to the website, send back the main pages html.
 app.get('/', function(req, res){
-  res.sendStatus(200)
-  // res.sendFile(path.resolve(__dirname + '/../client/public/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname + '/../client/public/index.html'));
 });
+// When the brower reads the script tag in html file, it will request for the main.js file.
+app.get('/main.js', function(req, res){
+  res.status(200).sendFile(path.resolve(__dirname + '/../client/public/main.js'));
+});
+
 
 app.listen(8080);
 console.log('listening at http://localhost8080')
