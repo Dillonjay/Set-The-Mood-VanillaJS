@@ -19,5 +19,9 @@
     "chai": "^3.5.0",
     "nodemon": "^1.10.2",
     "request": "^2.74.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3"
   }
 }

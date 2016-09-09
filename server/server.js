@@ -1,35 +1,14 @@
-const http = require('http');
-const fs = require('fs')
+const express = require('express');
+const app = express();
+const path = require('path')
 
-const port = 8080;
 
-const ip = "127.0.0.1";
 
-const server = http.createServer(function (request, response) {
-  console.log(request.method, request.url)
-  // console.log("Headers:", request.headers)
-
-  // Look up request.on('data', ...)
-  console.log("Request body?", request.body)
-
-  if ( request.method === 'GET' && request.url === '/hello' ) {
-    response.writeHead(200, {
-      'Content-Type': 'text/html'
-    })
-    response.end(`hello`)
-  }
-  else if ( request.method === 'GET' && request.url === '/' ) {
-    response.writeHead(200, {
-      'Content-Type': 'text/html'
-    })
-    response.end(`
-      <h1>HomePage</h1>
-    `)
-  }
-  else {
-    response.writeHead(404, {})
-    response.end('not found.')
-  }
+app.get('/', function(req, res){
+  res.sendFile(path.resolve(__dirname + '/../client/public/index.html'));
 });
-console.log("Listening on http://localhost:" + port);
-server.listen(port, ip);
+
+app.listen(8080);
+console.log('listening at http://localhost8080')
+
+
