@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+var partials = require('express-partials');
+const User = require('./models/User.js')
+
 const passport = require('passport')
 const SpotifyStrategy = require('passport-spotify').Strategy;
 // Middleware
@@ -26,7 +29,8 @@ passport.use(new SpotifyStrategy({
     callbackURL: "http://localhost:8080/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
+    User.storeUser(profile)
+    
     return done();
   }
 ));
@@ -41,16 +45,20 @@ app.get('/auth/spotify',
 app.get('/callback',
   passport.authenticate('spotify', { failureRedirect: '/' }),
   function(req, res) {
+  
     // Successful authentication, redirect home.
     res.redirect('/');
   });
-
+app.set('views', path.resolve(__dirname + '/../client/public/views'));
+app.set('view engine', 'ejs');
+app.use(partials());
 
 
 // For initial get request to the website, send back the main pages html.
 app.get('/', function(req, res) {
+  res.render('index')
   // Create absolute path from current file to the index.html file.
-  res.status(200).sendFile(path.resolve(__dirname + '/../client/public/index.html'));
+  // res.status(200).sendFile(path.resolve(__dirname + '/../client/public/index.html'));
 });
 
 // When the brower reads the script tag in html file, it will request for the main.js file.
@@ -58,6 +66,7 @@ app.get('/main.js', function(req, res) {
   // Create absolute path from current file to the main.js file
   res.status(200).sendFile(path.resolve(__dirname + '/../client/public/main.js'));
 });
+
 
 // Have the server listen on local host 8080.
 app.listen(8080);

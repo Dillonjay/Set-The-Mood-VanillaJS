@@ -15,12 +15,4 @@ document.querySelector("h1").addEventListener('click', function() {
 xhr.send()
 });
 
-// Ajax request to authenticate a spotify user.
-// document.querySelector('h2').addEventListener('click', function() {
-// 	var xhr = new XMLHttpRequest();
-// 	xhr.open('GET', '/auth/spotify');
-// 	xhr.onload = function() {
-
-// 	}
-// xhr.send();	
-// })
+//Ajax request to authenticate a spotify user.
