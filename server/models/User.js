@@ -1,8 +1,9 @@
 
 const User = exports;
-User.storeUser = function(userStuff) {
+// Function for extracting a users display name and photo from spotify'
+User.welcomeUser = function(userStuff) {
 	var info = {};
 	info.name = userStuff.displayName;
 	info.photo = userStuff.photos[0];
-	console.log(info)
-}
+	return info;
+};

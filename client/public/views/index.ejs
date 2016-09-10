@@ -7,9 +7,14 @@
 <body>
 	<h1>Set the Mood</h1>
 	<% if (user) { %>
-  	<h2><%= user.name %></h2>
+  	<h2>Welcome <%= user.name %> !</h2>
+  	<img src=<%= user.photo %>></img>
+  	<h2><a href ="/logout">Log out</a></h2>
 	<% } %>
+	<% if (user === undefined) { %>
 	<h2><a href ="/auth/spotify">Log in with spotify</a></h2>
+	<% } %>
+
 	<h2>Choose your mood</h2>
 	<h4>New Country</h4>
 	<h4>Regge</h4>

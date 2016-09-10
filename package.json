@@ -25,6 +25,7 @@
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.2",
     "express-partials": "^0.3.0",
+    "express-session": "^1.14.1",
     "passport": "^0.3.2",
     "passport-spotify": "^0.3.0"
   }
