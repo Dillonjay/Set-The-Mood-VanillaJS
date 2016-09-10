@@ -1,8 +1,8 @@
 
 // Ajax request without Jquery/ 
-document.querySelector("h1").addEventListener("click", function(){
+document.querySelector("h1").addEventListener('click', function() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:8080');
+	xhr.open('GET', '/');
 	xhr.onload = function() {
     if (xhr.status === 200) {
         alert(xhr.responseText);
@@ -13,4 +13,14 @@ document.querySelector("h1").addEventListener("click", function(){
 };	
 // Send the request
 xhr.send()
-})
+});
+
+// Ajax request to authenticate a spotify user.
+// document.querySelector('h2').addEventListener('click', function() {
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.open('GET', '/auth/spotify');
+// 	xhr.onload = function() {
+
+// 	}
+// xhr.send();	
+// })
