@@ -1,7 +1,6 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
-    methodOverride = require('method-override'),
     session = require('express-session'),
     passport = require('passport'),
     swig = require('swig'),
@@ -51,6 +50,8 @@ passport.use(new SpotifyStrategy({
 
 var app = express();
 
+app.engine('html', consolidate.swig);
+
 // Set views to the views folder. 
 app.set('views', path.resolve(__dirname + '/../client/public/views'));
 // Set the view engine to ejs. The view engine is set to jade by default.
@@ -63,7 +64,6 @@ app.use(cookieParser());
 // Parse all incomming JSON.
 app.use(bodyParser.json());
 
-app.use(methodOverride());
 
 app.use(session({ secret: 'Mood Setter', resave: true,
     saveUninitialized: true }));
@@ -74,7 +74,6 @@ app.use(passport.session());
 
 app.use(express.static(path.resolve(__dirname + '/../client/public')));
 
-app.engine('html', consolidate.swig);
 
 app.get('/', function(req, res){
   console.log('id', req.session)
@@ -118,7 +117,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen('port');
+app.listen(8080);
 
 console.log('listening at http://localhost8080')
 
