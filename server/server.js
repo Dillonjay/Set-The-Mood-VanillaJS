@@ -123,6 +123,10 @@ app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
+app.post('/search', function(req, res) {
+  console.log(req.body)
+})
 /******************************************************************/
 
 app.listen(port);
