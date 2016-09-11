@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 // Client id and secret for authorizing users spotify account.
 const spotifyClientId = 'b40cea95ad7143298ef925b6b2c80ab6'
 const spotifyClientSecret = '5e044bf177914eb3b2b04fc437c4d6d2'
-
+var userId = null;
 
 // Middleware for parsing any incoming json.
 app.use(bodyParser.json());
@@ -48,7 +48,9 @@ passport.use(new SpotifyStrategy({
     callbackURL: "http://localhost:8080/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-   var userInfo = User.welcomeUser(profile)
+  userId = profile.id;
+  console.log(userId)
+  var userInfo = User.welcomeUser(profile)
     
     return done(null, userInfo);
   }
@@ -64,7 +66,7 @@ app.get('/auth/spotify',
 app.get('/callback',
   passport.authenticate('spotify', { failureRedirect: '/' }),
   function(req, res) {
-    console.log('req', req.session)
+  
 
     // Successful authentication, redirect home.
     res.render('index', {user: req.user})
