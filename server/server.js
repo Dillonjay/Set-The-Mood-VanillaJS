@@ -7,6 +7,7 @@ const swig = require('swig');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const path = require('path');
 const consolidate = require('consolidate');
+const User = require('./models/User.js')
 
 //  Use let to allow the port variable to be changed when hoisted.
 let port = process.env.PORT || 8080;
@@ -104,19 +105,21 @@ app.get('/callback',
     res.redirect('/');
   });
 
-app.get('/', function(req, res){
-  console.log('id', req.session)
-  console.log('port')
-  res.render('index', { user: req.user });
+app.get('/', function(req, res) {
+  // Only send the photo and name to the client side.
+  let userInfo = req.user ? User.welcomeUser(req.user) : undefined;
+  // Render the index view with a users photo an display name.
+  res.render('index', { user: userInfo });
 });
 
-app.get('/login', function(req, res) {
-  
-  res.render('login', { user: req.user });
-});
+// Send main.js file when requested on with the html render.
+app.get('/main.js', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/public/main.js'))
+})
 
-
-app.get('/logout', function(req, res){
+// Logout a user.
+app.get('/logout', function(req, res) {
+  // Destroy a users session and redirect to the homepage.
   req.logout();
   res.redirect('/');
 });
@@ -124,7 +127,7 @@ app.get('/logout', function(req, res){
 
 app.listen(port);
 
-console.log('listening at http://localhost8080')
+console.log('listening at http://localhost8080');
 
 
 
