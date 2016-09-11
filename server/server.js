@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -126,6 +127,18 @@ app.get('/logout', function(req, res) {
 
 app.post('/search', function(req, res) {
   console.log(req.body)
+
+  let URL = `https://api.spotify.com/v1/search?q=${req.body.searchTerm}&type=playlist`
+  request(URL, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+
+         var parsedBody = JSON.parse(body);
+        console.log('stuff', body)
+        res.send(body)
+      } else {
+         //console.log("/location error: ", error)
+      }
+   })
 })
 /******************************************************************/
 
