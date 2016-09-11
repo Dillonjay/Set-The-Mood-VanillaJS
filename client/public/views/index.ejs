@@ -7,8 +7,8 @@
 <body>
 	<h1>Set the Mood</h1>
 	<% if (user) { %>
-  	<h2>Welcome <%= user.name %> !</h2>
-  	<img src=<%= user.photo %>></img>
+  	<h2>Welcome <%= user.displayName %> !</h2>
+  	<img src=<%= user.photos[0] %>></img>
   	<h2><a href ="/logout">Log out</a></h2>
 	<% } %>
 	<% if (user === undefined) { %>
