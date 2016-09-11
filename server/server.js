@@ -1,87 +1,113 @@
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    passport = require('passport'),
-    swig = require('swig'),
-    SpotifyStrategy = require('passport-spotify').Strategy;
-    path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
+const swig = require('swig');
+const SpotifyStrategy = require('passport-spotify').Strategy;
+const path = require('path');
+const consolidate = require('consolidate');
 
-var consolidate = require('consolidate');
+//  Use let to allow the port variable to be changed when hoisted.
+let port = process.env.PORT || 8080;
 
-var appKey = 'b40cea95ad7143298ef925b6b2c80ab6';
-var appSecret = '5e044bf177914eb3b2b04fc437c4d6d2';
+/************************ Api Keys ********************************/
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session. Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing. However, since this example does not
-//   have a database of user records, the complete spotify profile is serialized
-//   and deserialized.
+const spotifyKey = 'b40cea95ad7143298ef925b6b2c80ab6';
+const spotifySecret = '5e044bf177914eb3b2b04fc437c4d6d2';
+/******************************************************************/
+
+
+/************************ Set up Passport *************************/
+
+//  To support persistent login sessions, Passport needs to be able to
+//  serialize users into and deserialize users out of the session. Since
+//  this application does not have a database the complete spotify profile is serialized
+//  and deserialized.
 passport.serializeUser(function(user, done) {
+  // Pass on the user.
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
+  // Pass on the user.
   done(null, obj);
 });
 
-
-// Use the SpotifyStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and spotify
-//   profile), and invoke a callback with a user object.
+//  Use the SpotifyStrategy within Passport.
+//  Strategies in Passport require a `verify` function, which accept
+//  credentials (in this case, an accessToken, refreshToken, and spotify
+//  profile), and invoke a callback with a user object.
 passport.use(new SpotifyStrategy({
-  clientID: appKey,
-  clientSecret: appSecret,
+  clientID: spotifyKey,
+  clientSecret: spotifySecret,
   callbackURL: 'http://localhost:8080/callback'
   },
   function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
+    //  asynchronous verification.
     process.nextTick(function () {
-      // To keep the example simple, the user's spotify profile is returned to
-      // represent the logged-in user. In a typical application, you would want
-      // to associate the spotify account with a user record in your database,
-      // and return that user instead.
+      // Return a users profile to varify that they are logged in.
       return done(null, profile);
     });
   }));
+/******************************************************************/
 
-var app = express();
 
+/************************ Set up Express **************************/
+
+const app = express();
+//  Set up consolidate so express can use the swig engine to render html.
 app.engine('html', consolidate.swig);
-
-// Set views to the views folder. 
+//  Set views to the views folder. 
 app.set('views', path.resolve(__dirname + '/../client/public/views'));
-// Set the view engine to ejs. The view engine is set to jade by default.
+//  Set the view engine to ejs. The view engine is set to jade by default.
 app.set('view engine', 'ejs');
+/******************************************************************/
 
-app.set('port', process.env.PORT || 8080);
 
-// Parse all incoming cookies.
+/************************ Set up middleware ***********************/
+
+//  Parse all incoming cookies.
 app.use(cookieParser());
-// Parse all incomming JSON.
+//  Parse all incomming JSON.
 app.use(bodyParser.json());
-
-
+//  Express session.
 app.use(session({ secret: 'Mood Setter', resave: true,
     saveUninitialized: true }));
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
+//  Initialize Passport.
 app.use(passport.initialize());
+//  Use passsport session middleware to allow for persistant login.
 app.use(passport.session());
+/******************************************************************/
 
-app.use(express.static(path.resolve(__dirname + '/../client/public')));
 
+/************************ Set up routes ***************************/
+
+//  Use passport.authenticate() as route middleware to authenticate the
+//  request. The first step in spotify authentication will involve redirecting
+//  the user to spotify.com. After authorization, spotify will redirect the user
+//  back to this application at /callback
+app.get('/auth/spotify',
+  // Set the scope so a user will see the spotify login dialog.
+  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
+  function(req, res){
+//  The request will be redirected to spotify for authentication, so this
+//  function will not be called.
+});
+
+//  If authentication fails, the user will be redirected back to the
+//  login page. Otherwise, the primary route function function will be called,
+//  which, in this example, will redirect the user to the home page.
+app.get('/callback',
+  passport.authenticate('spotify', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 app.get('/', function(req, res){
   console.log('id', req.session)
+  console.log('port')
   res.render('index', { user: req.user });
-});
-
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account.html', { user: req.user });
 });
 
 app.get('/login', function(req, res) {
@@ -89,47 +115,18 @@ app.get('/login', function(req, res) {
   res.render('login', { user: req.user });
 });
 
-// GET /auth/spotify
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. The first step in spotify authentication will involve redirecting
-//   the user to spotify.com. After authorization, spotify will redirect the user
-//   back to this application at /auth/spotify/callback
-app.get('/auth/spotify',
-  passport.authenticate('spotify', {scope: ['user-read-email', 'user-read-private'], showDialog: true}),
-  function(req, res){
-// The request will be redirected to spotify for authentication, so this
-// function will not be called.
-});
-
-// GET /auth/spotify/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   login page. Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
-app.get('/callback',
-  passport.authenticate('spotify', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/');
-  });
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+/******************************************************************/
 
-app.listen(8080);
+app.listen(port);
 
 console.log('listening at http://localhost8080')
 
-//   Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed. Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/');
-}
+
 
 
 
