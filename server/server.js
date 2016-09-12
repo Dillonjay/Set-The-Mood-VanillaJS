@@ -103,14 +103,18 @@ app.get('/auth/spotify',
 app.get('/callback',
   passport.authenticate('spotify', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/home');
   });
-
 app.get('/', function(req, res) {
+ 
+  res.render('landing');
+});
+
+app.get('/home', function(req, res) {
   // Only send the photo and name to the client side.
   let userInfo = req.user ? User.welcomeUser(req.user) : undefined;
   // Render the index view with a users photo an display name.
-  res.render('index', { user: userInfo });
+  res.render('home', { user: userInfo });
 });
 
 // Send main.js file when requested on with index.html render.

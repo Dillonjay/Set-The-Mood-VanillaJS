@@ -63,7 +63,7 @@ new MutationObserver(function onSrcChange(){
  	let refNode = document.querySelector(".personalPlaylist")
  	console.log('refffnode', refNode)
  	insertAfter(refNode, newButton)
- 	newButton.innerHTML ="press to begin the mood";
+ 	newButton.innerHTML ="press to set the mood";
 
 
      // var op = parseFloat(image.style.opacity);
