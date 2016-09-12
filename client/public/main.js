@@ -13,13 +13,16 @@ document.querySelector(".search").addEventListener('click', function(e) {
 	request.onload = function() {
     if (request.status === 200) {
     	let results = JSON.parse(request.response);
-        console.log(results);
+    	var myNode = document.querySelector(".playlists");
+		while (myNode.firstChild) {
+    		myNode.removeChild(myNode.firstChild);
+		}
+      
         results.playlists.items.forEach(item => {
-        	console.log(item.name)
 
-        	var node = document.createElement("DIV");               
-			var textnode = document.createTextNode(`${item.name}`);  
-			var x = document.createElement("IMG")
+        	let node = document.createElement("DIV");               
+			let textnode = document.createTextNode(`${item.name}`);  
+			let x = document.createElement("IMG")
 			x.setAttribute("class", "playlistImg")
 			x.setAttribute("src", `${item.images[0].url}`)    
 			node.appendChild(textnode);   
@@ -29,7 +32,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
         })
     } 
     else {
-        alert('Request failed.  Returned status of ' + request.status);
+        
     }
 };	
 // Send the request
