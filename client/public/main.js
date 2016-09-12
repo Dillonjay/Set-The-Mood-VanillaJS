@@ -14,6 +14,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
     if (request.status === 200) {
     	// Parse the payload.
     	let payload = JSON.parse(request.response);
+    	console.log(payload)
     	// Select the playlists div so we can check if it is empty.
     	let myNode = document.querySelector(".playlists");
     	// Remove each child before populating with new data.
@@ -35,6 +36,10 @@ document.querySelector(".search").addEventListener('click', function(e) {
 			// First append the name text, then append the image.
 			node.appendChild(name);   
 			node.appendChild(image);
+			node.addEventListener("click" , function() {
+				var URL = `https://embed.spotify.com/?uri=${item.uri}`
+				document.querySelector("iframe").setAttribute("src", URL)
+			})
 			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".playlists").appendChild(node)
         })

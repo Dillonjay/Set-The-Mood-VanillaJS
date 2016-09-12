@@ -12,13 +12,14 @@
   	<img src=<%= user.photo %>></img>
   	<h2><a href ="/logout">Log out</a></h2>
   	<input></input>
-  	<button class="search">Search Music</button>
+  	<button class="search">Search Playlists</button>
+  	<button>Select one of your playlsits</button>
+  	<iframe src="" width="400" height="300" frameborder="0" allowtransparency="true"></iframe>	
 	<% } %>
 	<% if (user === undefined) { %>
 	<h2><a href ="/auth/spotify">Log in with spotify</a></h2>
 	<% } %>
-	<div class="playlists">
-		
+	<div class="playlists">	
 	</div>
 
 	<script src="main.js"></script>
