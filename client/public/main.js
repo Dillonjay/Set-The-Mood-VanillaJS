@@ -1,43 +1,50 @@
 
-// Ajax request without Jquery.
-
+// If there a user is loged in and the search bar is present, attach a listener.
 document.querySelector(".search") ? 
 document.querySelector(".search").addEventListener('click', function(e) {
 	e.preventDefault;
+	// Grab the input value.
 	let term = document.querySelector("input").value;
-	alert(term)
+	// Create a stringified object to send to the server.
 	let data = JSON.stringify({ searchTerm : term });
 	let request = new XMLHttpRequest();
 	request.open('POST', '/search');
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.onload = function() {
     if (request.status === 200) {
-    	let results = JSON.parse(request.response);
-    	var myNode = document.querySelector(".playlists");
+    	// Parse the payload.
+    	let payload = JSON.parse(request.response);
+    	// Select the playlists div so we can check if it is empty.
+    	let myNode = document.querySelector(".playlists");
+    	// Remove each child before populating with new data.
 		while (myNode.firstChild) {
     		myNode.removeChild(myNode.firstChild);
 		}
-      
-        results.playlists.items.forEach(item => {
-
-        	let node = document.createElement("DIV");               
-			let textnode = document.createTextNode(`${item.name}`);  
-			let x = document.createElement("IMG")
-			x.setAttribute("class", "playlistImg")
-			x.setAttribute("src", `${item.images[0].url}`)    
-			node.appendChild(textnode);   
-			node.appendChild(x);
-
+      	// Loop through the playlists that we recieve from the server.
+        payload.playlists.items.forEach(item => {
+        	// Create a new div with a class of "playlistDiv"
+        	let node = document.createElement("DIV"); 
+        	node.setAttribute("class", "playlistDiv");
+        	// Create new text for each playlist name.          
+			let name = document.createTextNode(`${item.name}`); 
+			// Create a new image tag with a class of "playlistImg".
+			// Provide the playlist image url to the image tag.
+			let image = document.createElement("IMG")
+			image.setAttribute("class", "playlistImg")
+			image.setAttribute("src", `${item.images[0].url}`)    
+			// First append the name text, then append the image.
+			node.appendChild(name);   
+			node.appendChild(image);
+			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".playlists").appendChild(node)
         })
     } 
     else {
-        
+        alert('Search failed')
     }
 };	
-// Send the request
+// Send the request with the search term.
 request.send(data)
 })
 : null;
 
-//Ajax request to authenticate a spotify user.

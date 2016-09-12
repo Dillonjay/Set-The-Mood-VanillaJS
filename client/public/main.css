@@ -1,5 +1,14 @@
+/* probably use a flex box to display the playlist images. */
+.playlistDiv {
+	text-align:center;
+}
+.playlistDiv:hover {
+	cursor:pointer;
+}
+
 .playlistImg {
 	display:block;
+	margin:auto;
 	width:100px;
 	height:100px;
 }
