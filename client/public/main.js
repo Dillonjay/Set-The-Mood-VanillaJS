@@ -52,4 +52,29 @@ document.querySelector(".search").addEventListener('click', function(e) {
 request.send(data)
 })
 : null;
+var img = document.querySelector('iframe')
 
+new MutationObserver(function onSrcChange(){
+	function insertAfter(referenceNode, newNode) {
+    	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+	}
+ 	let newButton = document.createElement("BUTTON");
+
+ 	let refNode = document.querySelector(".personalPlaylist")
+ 	console.log('refffnode', refNode)
+ 	insertAfter(refNode, newButton)
+ 	newButton.innerHTML ="press to begin the mood";
+
+
+     // var op = parseFloat(image.style.opacity);
+
+     //        var timer = setInterval(function () {
+     //            console.log('here');
+     //            if(op >= 1.0)
+     //                clearInterval(timer);
+
+     //            op += 0.1;
+     //            image.style.opacity = op;
+     //        }, 500);
+})
+  .observe(img,{attributes:true,attributeFilter:["src"]})

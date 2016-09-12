@@ -12,3 +12,7 @@
 	width:100px;
 	height:100px;
 }
+
+iframe {
+ 	opacity:.5;
+}
