@@ -6,22 +6,24 @@
 	<title>Set The Mood</title>
 </head>
 <body>
-	<h1>Set the Mood</h1>
-	<% if (user) { %>
-  	<h2>Welcome <%= user.name %> !</h2>
-  	<img src=<%= user.photo %>></img>
-  	<h2><a href ="/logout">Log out</a></h2>
+	<div>
+	<h1 class="head">Set the Mood</h1>
+	<div class="userInfo">
+  		<h2>Welcome <%= user.name %> !</h2> </br>
+  		<img class="userImg" src=<%= user.photo %>></img> <br/>
+  		<h2><a href ="/logout">Log out</a></h2>
+  	</div>
+  	</div>
+  	<div>
   	<input></input>
   	<button class="search">Search Playlists</button>
   	<button class="personalPlaylist">Select one of your playlsits</button>
+  	</div>
 	<span id="sidePlayer"> &#9776; open</span>
 	<div id="mySidenav" class="sidenav">
   	<a href="" class="closebtn">&times;</a>
 	<iframe src="" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 	</div>
-	<% } %>
-	<% if (user === undefined) { %>
-	<% } %>
 	<div class="playlists">	
 	</div>
 

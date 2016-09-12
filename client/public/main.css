@@ -15,10 +15,26 @@
 
 
 /* probably use a flex box to display the playlist images. */
+.head {
+	display:inline-block;
+	text-align:center;
+}
+.userInfo {
+	display:inline-block;
+	margin-left:40%;
+	border:solid black 3px;
+}
+.userImg {
+	height:20vh;
+}
+
 .playlists {
 	display: -webkit-flex;
     display: flex;
    	flex-wrap: wrap;
+   	height:70vh;
+   	width:100vw;
+   	overflow-y:scroll;
 }
 .playlistDiv {
 	text-align:center;
@@ -26,13 +42,14 @@
 }
 .playlistDiv:hover {
 	cursor:pointer;
+	background-color:#2e2f33;
 }
 
 .playlistImg {
 	display:block;
 	margin:auto;
-	width:100px;
-	height:100px;
+	width:20vw;
+	height:20vh;
 }
 
 

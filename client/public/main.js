@@ -4,6 +4,7 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.display = "none";
+
 }
 // If there a user is loged in and the search bar is present, attach a listener.
 document.querySelector(".search") ? 
@@ -33,7 +34,8 @@ document.querySelector(".search").addEventListener('click', function(e) {
         	let node = document.createElement("DIV"); 
         	node.setAttribute("class", "playlistDiv");
         	// Create new text for each playlist name.          
-			let name = document.createTextNode(`${item.name}`); 
+			let name = document.createElement("H2");
+			name.innerHTML = `${item.name}`; 
 			// Create a new image tag with a class of "playlistImg".
 			// Provide the playlist image url to the image tag.
 			let image = document.createElement("IMG")
