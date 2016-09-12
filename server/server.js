@@ -113,9 +113,13 @@ app.get('/', function(req, res) {
   res.render('index', { user: userInfo });
 });
 
-// Send main.js file when requested on with the html render.
+// Send main.js file when requested on with index.html render.
 app.get('/main.js', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/main.js'))
+})
+// Send main.css file when requested with index.html render.
+app.get('/main.css', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/public/main.css'))
 })
 
 // Logout a user.

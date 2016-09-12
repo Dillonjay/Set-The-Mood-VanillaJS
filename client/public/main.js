@@ -20,6 +20,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
         	var node = document.createElement("DIV");               
 			var textnode = document.createTextNode(`${item.name}`);  
 			var x = document.createElement("IMG")
+			x.setAttribute("class", "playlistImg")
 			x.setAttribute("src", `${item.images[0].url}`)    
 			node.appendChild(textnode);   
 			node.appendChild(x);
