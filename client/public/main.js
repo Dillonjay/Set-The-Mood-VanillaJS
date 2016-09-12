@@ -34,7 +34,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
         	let node = document.createElement("DIV"); 
         	node.setAttribute("class", "playlistDiv");
         	// Create new text for each playlist name.          
-			let name = document.createElement("H2");
+			let name = document.createElement("P");
 			name.innerHTML = `${item.name}`; 
 			// Create a new image tag with a class of "playlistImg".
 			// Provide the playlist image url to the image tag.
@@ -94,3 +94,9 @@ new MutationObserver(function onSrcChange(){
      //        }, 500);
 })
   .observe(img,{attributes:true,attributeFilter:["src"]})
+
+
+///////////////////////////SEARCH THROUGH YOUR OWN SPOTIFY PLAYLSITS////////
+document.querySelector('.personalPlaylist').addEventListener('click', function() {
+	alert('clickeeeed')
+})

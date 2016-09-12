@@ -1,3 +1,5 @@
+/******* API For flowershops or choclate shops nearby!*********/
+
 /******************************************************************************************* LANDING PAGE ***************************/
 .landing {
 	background-color:#2e2f33;
@@ -29,6 +31,8 @@
 }
 
 .playlists {
+	margin-right:auto;
+	margin-left:auto;
 	display: -webkit-flex;
     display: flex;
    	flex-wrap: wrap;
@@ -48,8 +52,8 @@
 .playlistImg {
 	display:block;
 	margin:auto;
-	width:20vw;
-	height:30vh;
+	width:25vw;
+	height:40vh;
 }
 
 
@@ -61,7 +65,7 @@
 .sidenav {
     display: none;
     height: 100%;
-    width: 250px;
+    width: 23vw;
     position: fixed;
     z-index: 1;
     top: 0;

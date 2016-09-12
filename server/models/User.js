@@ -7,3 +7,10 @@ User.welcomeUser = function(userStuff) {
 	info.photo = userStuff.photos[0];
 	return info;
 };
+
+User.grabId = function(userStuff) {
+	console.log('userstuff', userStuff)
+	let info = {};
+	info.id = userStuff.id;
+	return info;
+};

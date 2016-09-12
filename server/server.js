@@ -133,16 +133,41 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+app.get('/getUserPlaylists', function (req, res) {
+
+  let userInfo = req.user ? User.grabId(req.user) : undefined;
+  console.log('user', userInfo)
+  if(req.user){
+    console.log('id', req.user.id)
+  let URL = `https://api.spotify.com/v1/users/${req.user.id}/playlists`;
+  request(URL, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+
+         let parsedBody = JSON.parse(body);
+         console.log('body', body)
+         res.send(body)
+      } else {
+         console.log("/location error: ", error)
+      }
+   })
+  }
+
+  // request(URL, function(error, response, body) {
+  //     if (!error && response.statusCode == 200) {
+
+  //        var parsedBody = JSON.parse(body);
+  //       console.log('stuff', body)
+})
+
 app.post('/search', function(req, res) {
-  console.log(req.body)
+
 
   let URL = `https://api.spotify.com/v1/search?q=${req.body.searchTerm}&type=playlist`
   request(URL, function(error, response, body) {
       if (!error && response.statusCode == 200) {
 
-         var parsedBody = JSON.parse(body);
-        console.log('stuff', body)
-        res.send(body)
+         let parsedBody = JSON.parse(body);
+         res.send(body)
       } else {
          //console.log("/location error: ", error)
       }
