@@ -1,4 +1,10 @@
+function openNav() {
+    document.getElementById("mySidenav").style.display = "block";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.display = "none";
+}
 // If there a user is loged in and the search bar is present, attach a listener.
 document.querySelector(".search") ? 
 document.querySelector(".search").addEventListener('click', function(e) {
@@ -59,11 +65,19 @@ new MutationObserver(function onSrcChange(){
     	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 	}
  	let newButton = document.createElement("BUTTON");
-
- 	let refNode = document.querySelector(".personalPlaylist")
- 	console.log('refffnode', refNode)
- 	insertAfter(refNode, newButton)
+ 	newButton.setAttribute("id", "startMood")
+ 	let refNode = document.querySelector(".personalPlaylist");
+ 	let checkButton = document.querySelector('#startMood');
+ 	// If the 'set the mood' button is already on the page, do nothing.
+ 	// If not, put it on the page.
+ 	checkButton ? null : 
+	insertAfter(refNode, newButton)
  	newButton.innerHTML ="press to set the mood";
+	openNav();
+	document.querySelector('.closebtn').addEventListener('click', function(e){
+		e.preventDefault();
+		 closeNav();
+	})
 
 
      // var op = parseFloat(image.style.opacity);

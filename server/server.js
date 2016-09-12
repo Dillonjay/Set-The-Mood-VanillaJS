@@ -113,8 +113,8 @@ app.get('/', function(req, res) {
 app.get('/home', function(req, res) {
   // Only send the photo and name to the client side.
   let userInfo = req.user ? User.welcomeUser(req.user) : undefined;
-  // Render the index view with a users photo an display name.
-  res.render('home', { user: userInfo });
+  // If there is a user, render the home view, otherwise render the landing view.
+  userInfo ? res.render('home', { user: userInfo }) : res.render('landing');
 });
 
 // Send main.js file when requested on with index.html render.

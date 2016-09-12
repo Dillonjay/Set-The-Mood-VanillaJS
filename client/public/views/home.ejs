@@ -14,7 +14,11 @@
   	<input></input>
   	<button class="search">Search Playlists</button>
   	<button class="personalPlaylist">Select one of your playlsits</button>
-  	<iframe src="" width="400" height="300" frameborder="0" allowtransparency="true"></iframe>	
+	<span id="sidePlayer"> &#9776; open</span>
+	<div id="mySidenav" class="sidenav">
+  	<a href="" class="closebtn">&times;</a>
+	<iframe src="" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+	</div>
 	<% } %>
 	<% if (user === undefined) { %>
 	<% } %>
