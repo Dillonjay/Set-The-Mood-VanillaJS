@@ -12,7 +12,20 @@ document.querySelector(".search").addEventListener('click', function(e) {
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.onload = function() {
     if (request.status === 200) {
-        alert(request.response);
+    	let results = JSON.parse(request.response);
+        console.log(results);
+        results.playlists.items.forEach(item => {
+        	console.log(item.name)
+
+        	var node = document.createElement("DIV");               
+			var textnode = document.createTextNode(`${item.name}`);  
+			var x = document.createElement("IMG")
+			x.setAttribute("src", `${item.images[0].url}`)    
+			node.appendChild(textnode);   
+			node.appendChild(x);
+
+        	document.querySelector(".playlists").appendChild(node)
+        })
     } 
     else {
         alert('Request failed.  Returned status of ' + request.status);
