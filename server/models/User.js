@@ -9,8 +9,10 @@ User.welcomeUser = function(userStuff) {
 };
 
 User.grabId = function(userStuff) {
-	console.log('userstuff', userStuff)
-	let info = {};
-	info.id = userStuff.id;
-	return info;
+	return new Promise(function (resolve, reject){
+		let info = {};
+		info.id = userStuff.id;
+		info.token = userStuff.token
+		resolve(info)
+  	})
 };

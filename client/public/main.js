@@ -98,5 +98,15 @@ new MutationObserver(function onSrcChange(){
 
 ///////////////////////////SEARCH THROUGH YOUR OWN SPOTIFY PLAYLSITS////////
 document.querySelector('.personalPlaylist').addEventListener('click', function() {
-	alert('clickeeeed')
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/getUserPlaylists');
+	xhr.onload = function() {
+   	 if (xhr.status === 200) {
+        alert('User\'s name is ' + xhr.responseText);
+    }
+    else {
+        alert('Request failed.  Returned status of ' + xhr.status);
+    }
+};
+xhr.send();
 })

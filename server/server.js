@@ -46,8 +46,10 @@ passport.use(new SpotifyStrategy({
   callbackURL: 'http://localhost:8080/callback'
   },
   function(accessToken, refreshToken, profile, done) {
-    //  asynchronous verification.
+    //  Asynchronous verification.
     process.nextTick(function () {
+      // Add token to profile to access in requests to spotify.
+       profile.token = accessToken
       // Return a users profile to varify that they are logged in.
       return done(null, profile);
     });
@@ -105,12 +107,13 @@ app.get('/callback',
   function(req, res) {
     res.redirect('/home');
   });
+
 app.get('/', function(req, res) {
- 
-  res.render('landing');
+    res.render('landing');
 });
 
 app.get('/home', function(req, res) {
+
   // Only send the photo and name to the client side.
   let userInfo = req.user ? User.welcomeUser(req.user) : undefined;
   // If there is a user, render the home view, otherwise render the landing view.
@@ -119,6 +122,7 @@ app.get('/home', function(req, res) {
 
 // Send main.js file when requested on with index.html render.
 app.get('/main.js', function(req, res) {
+
   res.sendFile(path.join(__dirname + '/../client/public/main.js'))
 })
 // Send main.css file when requested with index.html render.
@@ -134,30 +138,26 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/getUserPlaylists', function (req, res) {
+ 
+  User.grabId(req.user).then(function(info){
 
-  let userInfo = req.user ? User.grabId(req.user) : undefined;
-  console.log('user', userInfo)
-  if(req.user){
-    console.log('id', req.user.id)
-  let URL = `https://api.spotify.com/v1/users/${req.user.id}/playlists`;
-  request(URL, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-
-         let parsedBody = JSON.parse(body);
-         console.log('body', body)
-         res.send(body)
-      } else {
-         console.log("/location error: ", error)
-      }
-   })
-  }
-
-  // request(URL, function(error, response, body) {
-  //     if (!error && response.statusCode == 200) {
-
-  //        var parsedBody = JSON.parse(body);
-  //       console.log('stuff', body)
+  request({
+    url: `https://api.spotify.com/v1/users/${info.id}/playlists`, //URL to hit
+    method: 'GET', //Specify the method
+    headers: { //We can define headers too
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${info.token}`
+    }}, function(error, response, body){
+    if(error) {
+        console.log(error);
+    } else {
+        console.log('BODY',body);
+        res.send(body)
+    }
+  });
+ })
 })
+
 
 app.post('/search', function(req, res) {
 
@@ -169,20 +169,14 @@ app.post('/search', function(req, res) {
          let parsedBody = JSON.parse(body);
          res.send(body)
       } else {
-         //console.log("/location error: ", error)
+         console.log("/location error: ", error)
       }
    })
-})
+}); 
 /******************************************************************/
+
 
 app.listen(port);
 
 console.log('listening at http://localhost8080');
-
-
-
-
-
-
-
 
