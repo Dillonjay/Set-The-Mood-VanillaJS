@@ -30,14 +30,44 @@
 	height:20vh;
 }
 
+.test {
+  border:solid black 3px;  
+  display:flex;
+
+}
+
+/*#box1 {
+width:200px;
+float: left;
+height: 300px;
+background-color: black;
+margin-right: 20px;
+}
+#box2{
+width: 200px;
+float: left;
+height: 300px;
+background-color: blue;
+}
+*/
+.video {
+    border:solid red 3px;  
+    height:80vh;
+    float: left;
+    position:inline;
+    overflow-x: hidden;
+    overflow-y:scroll;
+    width:60vw;
+    }
+
 .playlists {
-	margin-right:auto;
-	margin-left:auto;
-	display: -webkit-flex;
-    display: flex;
+    float: left;
+    border:solid blue 3px;  
+	display: -webkit-inline-flex;
+    display: inline-flex;
    	flex-wrap: wrap;
-   	height:70vh;
-   	width:100vw;
+   	height:80vh;
+   	width:85vw;
    	overflow-y:scroll;
 }
 .playlistDiv {

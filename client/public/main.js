@@ -45,7 +45,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
 			node.appendChild(image);
 			node.addEventListener("click" , function() {
 				var URL = `https://embed.spotify.com/?uri=${item.uri}`
-				document.querySelector("iframe").setAttribute("src", URL)
+				document.querySelector(".spotifyIframe").setAttribute("src", URL)
 			})
 			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".playlists").appendChild(node)
@@ -59,7 +59,7 @@ document.querySelector(".search").addEventListener('click', function(e) {
 request.send(data)
 })
 : null;
-var img = document.querySelector('iframe')
+var img = document.querySelector('.spotifyIframe')
 
 new MutationObserver(function onSrcChange(){
 	function insertAfter(referenceNode, newNode) {
@@ -127,7 +127,7 @@ document.querySelector('.personalPlaylist').addEventListener('click', function()
 			node.appendChild(image);
 			node.addEventListener("click" , function() {
 				var URL = `https://embed.spotify.com/?uri=${item.uri}`
-				document.querySelector("iframe").setAttribute("src", URL)
+				document.querySelector(".spotifyIframe").setAttribute("src", URL)
 			})
 			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".playlists").appendChild(node)

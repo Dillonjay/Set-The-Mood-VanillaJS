@@ -2,12 +2,12 @@
 const User = exports;
 // Function for extracting a users display name and photo from spotify'
 User.welcomeUser = function(userStuff) {
-	return new Promise(function (resolve, reject){
 		let info = {};
+		if(userStuff){
 		info.name = userStuff.displayName;
 		info.photo = userStuff.photos[0];
-		resolve(info)
-	})	
+		}
+		return info;
 };
 
 User.grabId = function(userStuff) {
