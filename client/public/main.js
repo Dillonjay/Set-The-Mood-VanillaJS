@@ -21,7 +21,6 @@ document.querySelector(".search").addEventListener('click', function(e) {
     if (request.status === 200) {
     	// Parse the payload.
     	let payload = JSON.parse(request.response);
-    	console.log(payload)
     	// Select the playlists div so we can check if it is empty.
     	let myNode = document.querySelector(".playlists");
     	// Remove each child before populating with new data.
@@ -98,15 +97,45 @@ new MutationObserver(function onSrcChange(){
 
 ///////////////////////////SEARCH THROUGH YOUR OWN SPOTIFY PLAYLSITS////////
 document.querySelector('.personalPlaylist').addEventListener('click', function() {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/getUserPlaylists');
-	xhr.onload = function() {
-   	 if (xhr.status === 200) {
-        alert('User\'s name is ' + xhr.responseText);
+	var request = new XMLHttpRequest();
+	request.open('GET', '/getUserPlaylists');
+	request.onload = function() {
+   	 if (request.status === 200) {
+        let payload = JSON.parse(request.response);
+        console.log(payload)
+        // Select the playlists div so we can check if it is empty.
+    	let myNode = document.querySelector(".playlists");
+    	// Remove each child before populating with new data.
+		while (myNode.firstChild) {
+    		myNode.removeChild(myNode.firstChild);
+		}
+      	// Loop through the playlists that we recieve from the server.
+        payload.items.forEach(item => {
+        	// Create a new div with a class of "playlistDiv"
+        	let node = document.createElement("DIV"); 
+        	node.setAttribute("class", "playlistDiv");
+        	// Create new text for each playlist name.          
+			let name = document.createElement("P");
+			name.innerHTML = `${item.name}`; 
+			// Create a new image tag with a class of "playlistImg".
+			// Provide the playlist image url to the image tag.
+			let image = document.createElement("IMG")
+			image.setAttribute("class", "playlistImg")
+			image.setAttribute("src", `${item.images[0].url}`)    
+			// First append the name text, then append the image.
+			node.appendChild(name);   
+			node.appendChild(image);
+			node.addEventListener("click" , function() {
+				var URL = `https://embed.spotify.com/?uri=${item.uri}`
+				document.querySelector("iframe").setAttribute("src", URL)
+			})
+			// Finally, append the whole div to the main playlist div.
+        	document.querySelector(".playlists").appendChild(node)
+        })
     }
     else {
         alert('Request failed.  Returned status of ' + xhr.status);
     }
 };
-xhr.send();
+request.send();
 })

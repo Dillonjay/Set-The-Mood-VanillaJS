@@ -115,9 +115,11 @@ app.get('/', function(req, res) {
 app.get('/home', function(req, res) {
 
   // Only send the photo and name to the client side.
-  let userInfo = req.user ? User.welcomeUser(req.user) : undefined;
-  // If there is a user, render the home view, otherwise render the landing view.
-  userInfo ? res.render('home', { user: userInfo }) : res.render('landing');
+  User.welcomeUser(req.user).then(function(info){
+
+    // If there is a user, render the home view, otherwise render the landing view.
+    Object.keys(info).length ? res.render('home', { user: info }) : res.render('landing');
+  })
 });
 
 // Send main.js file when requested on with index.html render.
@@ -151,7 +153,6 @@ app.get('/getUserPlaylists', function (req, res) {
     if(error) {
         console.log(error);
     } else {
-        console.log('BODY',body);
         res.send(body)
     }
   });
