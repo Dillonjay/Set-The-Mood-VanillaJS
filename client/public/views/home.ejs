@@ -6,19 +6,22 @@
 	<title>Set The Mood</title>
 </head>
 <body>
-	<div>
-	<h1 class="head">Set the Mood</h1>
+	<div class="head">
+	<h1 >Set the Mood</h1>
 	<div class="userInfo">
   		<h2>Welcome <%= user.name %> !</h2> </br>
   		<img class="userImg" src=<%= user.photo %>></img> <br/>
   		<h2><a href ="/logout">Log out</a></h2>
   	</div>
   	</div>
-  	<div>
-  	<input></input>
-  	<button class="search">Search Playlists</button>
-  	<button class="personalPlaylist">Select one of your playlsits</button>
+  	<div class="instruction">
   	</div>
+	<h2>Search for a playlist</h2>
+  	<input></input>
+  	<button class="search">Search</button>
+  	<h2>Show your playlists</h2>
+  	<button class="personalPlaylist">Show</button>
+  	<h2 class="choose_scene"> Choose a scene </h2>
 	<span id="sidePlayer"> &#9776; open</span>
 	<div id="mySidenav" class="sidenav">
   	<a href="" class="closebtn">&times;</a>
@@ -26,10 +29,8 @@
 	</div>
 	<div class="test">
 	<div class="playlists">	
-	<h1>Choose a playlist</h1>
 	</div>
   	<div class="video">
-  	<h1> Choose a scene </h1>
   
 	<img class="scene" src="https://i.ytimg.com/vi/MY-f7whE_qE/hqdefault.jpg"><img>
 	<img class="scene" src="https://i.ytimg.com/vi/4RUGmBxe65U/hqdefault.jpg"><img>
@@ -41,14 +42,9 @@
 	<img class="scene" src="https://i.ytimg.com/vi/V4Oosy-ZtGY/hqdefault.jpg"><img>
 	<img class="scene" src="https://i.ytimg.com/vi/hs86eBCT4dI/hqdefault.jpg"><img>
 
-
- 	<!--  <script src="https://www.youtube.com/iframe_api"></script>
-  	<div id="player"></div>
-  	<div id="player1"></div>
-  	
- 	 <button class="player-btn">Push</button> -->
  	 </div>
   </div>
+  <footer> </footer>
 
 	<script src="main.js"></script>
 </body>

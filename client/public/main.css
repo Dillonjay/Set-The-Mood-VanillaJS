@@ -18,16 +18,26 @@
 
 /* probably use a flex box to display the playlist images. */
 .head {
-	display:inline-block;
+    border:solid black 3px;  
 	text-align:center;
+}
+h2 {
+    display:inline;
 }
 .userInfo {
 	display:inline-block;
-	margin-left:40%;
 	border:solid black 3px;
 }
 .userImg {
 	height:20vh;
+}
+
+.instruction {
+    border:solid black 3px;  
+}
+
+.choose_scene {
+    margin-left:30%;
 }
 
 .test {
@@ -46,20 +56,6 @@
     width:36vw;
 }
 
-/*#box1 {
-width:200px;
-float: left;
-height: 300px;
-background-color: black;
-margin-right: 20px;
-}
-#box2{
-width: 200px;
-float: left;
-height: 300px;
-background-color: blue;
-}
-*/
 .video {
     border:solid red 3px;  
     height:80vh;
@@ -135,3 +131,13 @@ background-color: blue;
     font-size: 36px;
     margin-left: 50px;
 }
+footer {
+    border:solid black 3px;  
+}
+
+
+
+
+
+
+

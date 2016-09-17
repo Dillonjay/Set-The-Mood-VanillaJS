@@ -140,42 +140,16 @@ document.querySelector('.personalPlaylist').addEventListener('click', function()
 request.send();
 })
 
+// Loop through the array of elements with the class name of scene.
+// Attach an event listener on each of them.
+document.querySelectorAll('.scene').forEach( scene => {
+	scene.addEventListener('click', function(e) {
+		alert('sawwwwdude')
+	})
 
-var player1,player, iframe,iframe1;
-var $ = document.querySelector.bind(document);
-
-// init player
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '200',
-    width: '300',
-    videoId: 'RDfjXj5EGqI',
-    events: {
-      'onReady': onPlayerReady
-    }
-  });
-}
+})
 
 
-// when ready, wait for clicks
-function onPlayerReady(event) {
-  var player = event.target;
-  iframe = $('#player');
-  iframe1 = $('#player1')
-  setupListener(); 
-}
 
-function setupListener (){
-$('.player-btn').addEventListener('click', playFullscreen);
-}
-
-function playFullscreen (){
-  player.playVideo();//won't work on mobile
-  
-  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
-  if (requestFullScreen) {
-    requestFullScreen.bind(iframe)();
-  }
-}
 
 
