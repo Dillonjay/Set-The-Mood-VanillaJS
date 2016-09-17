@@ -12,7 +12,10 @@
 
 
 /*****************************************************************/
-
+body {
+    background-color:black;
+    color:white;
+}
 
 
 
@@ -31,9 +34,32 @@ h2 {
 .userImg {
 	height:20vh;
 }
-
 .instruction {
-    border:solid black 3px;  
+    border:solid black 3px; 
+    position:relative;
+    height:20vh;
+}
+
+#player {
+    z-index: 1;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+#cover{
+    z-index: 2;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+  background-color:black;
+    background-image:url("https://www.hovero.com/wp-content/uploads/2014/04/spotify-new.jpg") ;
+    background-position: 31vw 0;
+    background-size: 38vw 21vh;
+    background-repeat:no-repeat;
 }
 
 .choose_scene {
@@ -50,6 +76,7 @@ h2 {
     cursor:pointer;
 }
 .scene {
+    margin-top:3vh;
     margin-right:5vw;
     margin-left:2vw;
     height:40vh;
@@ -60,7 +87,7 @@ h2 {
     border:solid red 3px;  
     height:80vh;
     float: left;
-    position:inline;
+    position:inline-flex;
     overflow-x: hidden;
     overflow-y:scroll;
     width:60vw;
@@ -103,7 +130,7 @@ h2 {
     height: 100%;
     width: 23vw;
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     right: 0;
     background-color: #111;

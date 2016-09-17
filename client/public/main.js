@@ -144,11 +144,55 @@ request.send();
 // Attach an event listener on each of them.
 document.querySelectorAll('.scene').forEach( scene => {
 	scene.addEventListener('click', function(e) {
-		alert('sawwwwdude')
+	var URL = `http://www.youtube.com/embed/${this.id}`	
+	document.querySelector('#player').setAttribute("src", URL)
+	
 	})
-
 })
+/////////////
 
+var player, iframe;
+var $ = document.querySelector.bind(document);
+
+// init player
+function onYouTubeIframeAPIReady() {
+	console.log('this', this)
+  player = new YT.Player('player', {
+    height: '200',
+    width: '1260',
+    videoId: 'MY-f7whE_qE',
+    events: {
+      'onReady': onPlayerReady
+    }
+  });
+}
+
+// when ready, wait for clicks
+function onPlayerReady(event) {
+  var player = event.target;
+  iframe = $('#player');
+  setupListener(); 
+}
+
+function setupListener (){
+document.querySelectorAll('.scene').forEach( scene => {
+	console.log('id', this.id)
+	scene.addEventListener('click', function() {
+	var URL = `http://www.youtube.com/embed/${this.id}`	
+	document.querySelector('#player').setAttribute("src", URL)
+	playFullscreen()
+	});
+	})
+}
+
+function playFullscreen (){
+  player.playVideo();//won't work on mobile
+  
+  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe)();
+  }
+}
 
 
 
