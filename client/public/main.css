@@ -36,6 +36,16 @@
 
 }
 
+.scene:hover {
+    cursor:pointer;
+}
+.scene {
+    margin-right:5vw;
+    margin-left:2vw;
+    height:40vh;
+    width:36vw;
+}
+
 /*#box1 {
 width:200px;
 float: left;
