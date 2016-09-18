@@ -8,45 +8,46 @@
 	<title>Set The Mood</title>
 </head>
 <body>
-	<div class="head">
-	<h1 >Set the Mood</h1>
-	<div class="userInfo">
-  		<h2>Welcome <%= user.name %> !</h2> </br>
-  		<img class="userImg" src=<%= user.photo %>></img> <br/>
-  		<h2><a href ="/logout">Log out</a></h2>
-  	</div>
-  	</div>
+
   	<div class="instruction">
-	<div id="player"></div>
-	<div id="cover"></div>
+		<div id="player"></div>
+		<div id="cover">
+			<h1><span>Set the Mood with</span></h1>
+			<div class="userInfo">
+  				<img class="userImg" src=<%= user.photo %>></img><br>
+  				<h4><a href ="/logout">Log out</a></h4>
+  			</div>	
+		</div>
 	</div>
-	<h2>Search for a playlist</h2>
+
+	<div class="searchInfo">
+	<h2 class="search_playlist">Search for a playlist</h2>
+  	<h2 class="your_playlsit">Show your playlists</h2> 
+  	<h2 class="choose_scene"> Choose a scene </h2><br> 
   	<input></input>
   	<button class="search">Search</button>
-  	<h2>Show your playlists</h2>
   	<button class="personalPlaylist">Show</button>
-  	<h2 class="choose_scene"> Choose a scene </h2>
-	<span id="sidePlayer"> &#9776; open</span>
+	<button class="youtube">Or Search Youtube</button>
+	<div id="myModal" class="modal">
+
+  	<!-- Modal content -->
+  	<div class="modal-content">
+   		 <span class="close">×</span>
+    		<h1>Searh For Videos</h1>
+  	</div>
+
+	</div>
+	</div>
 	<div id="mySidenav" class="sidenav">
   	<a href="" class="closebtn">&times;</a>
 	<iframe class ="spotifyIframe" src="" width="300" height="650" frameborder="0" allowtransparency="true"></iframe>
 	</div>
+
 	<div class="test">
 	<div class="playlists">	
 	</div>
   	<div class="video">
-  
-<!-- 	<img class="scene" id="p91kHbSksW4" src="https://i.ytimg.com/vi/p91kHbSksW4/hqdefault.jpg"><img>
-	<img class="scene" id="hs86eBCT4dI" src="https://i.ytimg.com/vi/hs86eBCT4dI/hqdefault.jpg"><img>
-	<img class="scene" id="4RUGmBxe65U" src="https://i.ytimg.com/vi/4RUGmBxe65U/hqdefault.jpg"><img>
-	<img class="scene" id="MY-f7whE_qE" src="https://i.ytimg.com/vi/MY-f7whE_qE/hqdefault.jpg"><img>
-	<img class="scene" id="vGbRxR03jV8" src="https://i.ytimg.com/vi/vGbRxR03jV8/hqdefault.jpg"><img>
-	<img class="scene" id="5eLcHJLDlI8" src="https://i.ytimg.com/vi/5eLcHJLDlI8/hqdefault.jpg"><img>
-	<img class="scene" id="f61PbjjVuF0" src="https://i.ytimg.com/vi/f61PbjjVuF0/hqdefault.jpg"><img>
-	<img class="scene" id="V4Oosy-ZtGY" src="https://i.ytimg.com/vi/V4Oosy-ZtGY/hqdefault.jpg"><img>
-	<img class="scene" id="_gp51lt9kdA" src="https://i.ytimg.com/vi/_gp51lt9kdA/hqdefault.jpg"><img> -->
-
- 	 </div>
+ 	</div>
   </div>
   <footer> </footer>
 	<script src="main.js"></script>

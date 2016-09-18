@@ -22,50 +22,65 @@ body {
 }
 
 
-
-
-.head {
-    border-bottom:solid #1DB954 1px;  
-	text-align:center;
+.userInfo {
+    display:inline-block;
+    float:right;
+    text-align:center;
+    margin-right:3vw;
 }
-h2 {
+.userInfo > h4 {
     display:inline;
 }
-.userInfo {
-	display:inline-block;
-	border:solid black 3px;
+ a {
+    color:white;
+    text-decoration:none;
 }
 .userImg {
-	height:20vh;
+    margin-top:4vh;
+    height:10vh;
+    border:solid #1DB954 1px;  
+    border-radius:50%;
+    display:inline;
 }
+
+
+
+
+
+
 .instruction {
-    border:solid black 3px; 
+    border-bottom:solid #1DB954 1px; 
     position:relative;
     height:20vh;
 }
 
-#player {
-    z-index: 1;
-    position:absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
-}
-#cover{
-    z-index: 2;
-    position:absolute;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
-    background-color:black;
-    background-image:url("https://www.hovero.com/wp-content/uploads/2014/04/spotify-new.jpg") ;
-    background-position: 31vw 0;
-    background-size: 38vw 21vh;
-    background-repeat:no-repeat;
+.searchInfo {
+    margin-top:3vh;
+    font-size:20px;
 }
 
+.searchInfo > h2 {
+    display:inline;
+}
+.search_playlist {
+    margin-right:3vw;
+}
+.your_playlsit {
+    margin-left:4vw;
+}
+.youtube {
+    margin-left:14vw;
+    width:20vw;
+}
+
+
+.choose_scene {
+    margin-left:15vw;
+}
+.personalPlaylist {
+    margin-left:6vw;
+    width:24vw;
+}
 
 button {
     background-color:#1DB954;
@@ -77,25 +92,111 @@ button {
     font-size:15px;
     font-family:Montserrat,Arial;
 }
+
 button:hover {
     cursor:pointer;
 }
+
 button:focus {
     outline:none;
 }
+
 input {
     border-radius:25px;
-    width:10vw;
+    width:13vw;
     height:3vh;
 }
+
 input:focus {
     outline:none;
 }
 
-
-.choose_scene {
-    margin-left:30%;
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    margin-top:25vh;
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+#player {
+    z-index: 1;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+
+#cover > h1 {
+    margin-left:15vw;
+    margin-top:6vh;
+    display:inline-block;
+    font-size: 7vh;
+    background: -webkit-linear-gradient(white, #cccccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#cover{
+    z-index: 2;
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color:black;
+    background-image:url("https://www.hovero.com/wp-content/uploads/2014/04/spotify-new.jpg") ;
+    background-position: 51vw 0;
+    background-size: 30vw 21vh;
+    background-repeat:no-repeat; 
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -166,7 +267,7 @@ input:focus {
     height: 100%;
     width: 23vw;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     top: 0;
     right: 0;
     background-color: #111;
@@ -200,7 +301,6 @@ input:focus {
 footer {
     border:solid black 3px;  
 }
-
 
 
 
