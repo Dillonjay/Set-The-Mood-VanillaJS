@@ -128,11 +128,17 @@ input:focus {
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #232323;
+    color:white;
+    text-align:center;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border-radius:25px;
+    border: 1px solid #1DB954;
+    width: 70%;
+}
+.modal-content > h1 {
+    margin-top:0;
 }
 
 /* The Close Button */

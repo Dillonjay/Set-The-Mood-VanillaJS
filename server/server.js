@@ -174,6 +174,23 @@ app.post('/search', function(req, res) {
       }
    })
 }); 
+// search youtube
+
+app.post('/search/youtube', function(req, res) {
+
+  let URL = `https://www.googleapis.com/youtube/v3/search?&q=${req.body.searchTerm}&type=video&key=AIzaSyCos2JdoVxT-7xA2AK9Whe8zXuVjDY7P2c&part=snippet`
+  console.log('here we go', req.body.searchTerm)
+
+  request(URL, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+
+         let parsedBody = JSON.parse(body);
+         res.send(body)
+      } else {
+         console.log("/location error: ", error)
+      }
+   })
+}); 
 /******************************************************************/
 
 

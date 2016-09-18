@@ -13,7 +13,7 @@ let videoInfo = [
 
 
 
-// Pre populate the page with playlists.
+/////////Pre populate the page with playlists.
 let data = JSON.stringify({ searchTerm : "love" });
 let request = new XMLHttpRequest();
 request.open('POST', '/search');
@@ -84,13 +84,13 @@ function closeNav() {
     document.getElementById("mySidenav").style.display = "none";
 
 }
-
+//// SEARCH SPOTIFY PLAYLISTS WITH BUTTON///////
 document.querySelector(".search").addEventListener('click', function(e) {
 	e.preventDefault;
 	// Grab the input value.
-	let term = document.querySelector("input").value;
+	let term = document.querySelector(".search_spotify").value;
 	// Clear input value.
-    document.querySelector('input').value = "";
+    document.querySelector('.search_spotify').value = "";
 	// Create a stringified object to send to the server.
 	let data = JSON.stringify({ searchTerm : term });
 	let request = new XMLHttpRequest();
@@ -307,7 +307,7 @@ function playFullscreen (){
   }
 }
 
-
+//////POP UPPPP/////////////////
 
 var modal = document.getElementById('myModal');
 
@@ -334,4 +334,53 @@ window.onclick = function(event) {
     }
 }
 
+//////////SEARCH YOUTUBE /////////
+document.querySelector('.search_youtube_button').addEventListener('click', function(e) {
+	e.preventDefault;
+	let term = document.querySelector(".search_youtube").value;
+	// Clear input value.
+    document.querySelector('.search_youtube').value = "";
+	// Create a stringified object to send to the server.
+	let data = JSON.stringify({ searchTerm : term });
+	let request = new XMLHttpRequest();
+	request.open('POST', '/search/youtube');
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.onload = function() {
+    if (request.status === 200) {
+    	// Parse the payload.
+    	let payload = JSON.parse(request.response);
+    	console.log('payload', payload)
+    	
+
+    	// Clear all videos from the page.
+		let video = document.querySelector(".video");
+    		// Remove each child before populating with new data.
+		while (video.firstChild) {
+    		video.removeChild(video.firstChild);
+    	}
+      	//Loop through the playlists that we recieve from the server.
+        payload.items.forEach(item => {
+        	console.log(item.snippet)
+        	// Create a new div with a class of "playlistDiv"
+        	let node = document.createElement("IMG"); 
+        	node.setAttribute("class", "scene");
+        	node.setAttribute("id", `${item.id.videoId}`);
+        	node.setAttribute("src", `${item.snippet.thumbnails.high.url}`)
+        	// Create new text for each playlist name.          
+
+			node.addEventListener("click" , function() {
+				console.log('helo')
+			})
+			// Finally, append the whole div to the main playlist div.
+        	document.querySelector(".video").appendChild(node)
+        })
+    } 
+    else {
+        alert('Search failed')
+    }
+};	
+// Send the request with the search term.
+request.send(data)
+
+})
 
