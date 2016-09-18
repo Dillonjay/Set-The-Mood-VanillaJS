@@ -2,12 +2,15 @@
 
 /******************************************************************************************* LANDING PAGE ***************************/
 .landing {
-	background-color:#2e2f33;
-
+	background-color:black;
+    font-family:Montserrat,Arial;
 }
 
+/*grey
+#828282
 
-
+green
+#1DB954*/
 
 
 
@@ -15,13 +18,14 @@
 body {
     background-color:black;
     color:white;
+    font-family:Montserrat,Arial;
 }
 
 
 
-/* probably use a flex box to display the playlist images. */
+
 .head {
-    border:solid black 3px;  
+    border-bottom:solid #1DB954 1px;  
 	text-align:center;
 }
 h2 {
@@ -55,16 +59,46 @@ h2 {
     left: 0;
     width:100%;
     height:100%;
-  background-color:black;
+    background-color:black;
     background-image:url("https://www.hovero.com/wp-content/uploads/2014/04/spotify-new.jpg") ;
     background-position: 31vw 0;
     background-size: 38vw 21vh;
     background-repeat:no-repeat;
 }
 
+
+button {
+    background-color:#1DB954;
+    border-radius:25px;
+    width:10vw;
+    height:4vh;
+    color:white;
+    border-color:black;
+    font-size:15px;
+    font-family:Montserrat,Arial;
+}
+button:hover {
+    cursor:pointer;
+}
+button:focus {
+    outline:none;
+}
+input {
+    border-radius:25px;
+    width:10vw;
+    height:3vh;
+}
+input:focus {
+    outline:none;
+}
+
+
 .choose_scene {
     margin-left:30%;
 }
+
+
+
 
 .test {
   border:solid black 3px;  
@@ -79,12 +113,12 @@ h2 {
     margin-top:3vh;
     margin-right:5vw;
     margin-left:2vw;
+    border-bottom:solid #2ebd59 1px;
     height:40vh;
     width:36vw;
 }
 
 .video {
-    border:solid red 3px;  
     height:80vh;
     float: left;
     position:inline-flex;
@@ -94,8 +128,7 @@ h2 {
     }
 
 .playlists {
-    float: left;
-    border:solid blue 3px;  
+    float: left; 
 	display: -webkit-inline-flex;
     display: inline-flex;
    	flex-wrap: wrap;
@@ -106,18 +139,21 @@ h2 {
 .playlistDiv {
 	text-align:center;
 	margin:2%;
+    border-bottom:solid #2ebd59 1px;
 }
 .playlistDiv:hover {
 	cursor:pointer;
-	background-color:#2e2f33;
 }
 
 .playlistImg {
 	display:block;
-	margin:auto;
+	
 	width:25vw;
 	height:40vh;
+    margin:0;
 }
+
+
 
 
 
@@ -158,6 +194,9 @@ h2 {
     font-size: 36px;
     margin-left: 50px;
 }
+
+
+
 footer {
     border:solid black 3px;  
 }

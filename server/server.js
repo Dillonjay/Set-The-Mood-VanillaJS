@@ -144,9 +144,9 @@ app.get('/getUserPlaylists', function (req, res) {
   User.grabId(req.user).then(function(info){
 
   request({
-    url: `https://api.spotify.com/v1/users/${info.id}/playlists`, //URL to hit
-    method: 'GET', //Specify the method
-    headers: { //We can define headers too
+    url: `https://api.spotify.com/v1/users/${info.id}/playlists`, 
+    method: 'GET', 
+    headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${info.token}`
     }}, function(error, response, body){
