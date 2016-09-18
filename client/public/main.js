@@ -291,6 +291,7 @@ function onPlayerReady(event) {
 function setupListener (){
 document.querySelectorAll('.scene').forEach( scene => {
 	scene.addEventListener('click', function() {
+	console.log(this.id)
 	var URL = `http://www.youtube.com/embed/${this.id}`	
 	document.querySelector('#player').setAttribute("src", URL)
 	playFullscreen()
@@ -349,7 +350,7 @@ document.querySelector('.search_youtube_button').addEventListener('click', funct
     if (request.status === 200) {
     	// Parse the payload.
     	let payload = JSON.parse(request.response);
-    	console.log('payload', payload)
+   
     	
 
     	// Clear all videos from the page.
@@ -360,7 +361,7 @@ document.querySelector('.search_youtube_button').addEventListener('click', funct
     	}
       	//Loop through the playlists that we recieve from the server.
         payload.items.forEach(item => {
-        	console.log(item.snippet)
+       
         	// Create a new div with a class of "playlistDiv"
         	let node = document.createElement("IMG"); 
         	node.setAttribute("class", "scene");
@@ -369,7 +370,10 @@ document.querySelector('.search_youtube_button').addEventListener('click', funct
         	// Create new text for each playlist name.          
 
 			node.addEventListener("click" , function() {
-				console.log('helo')
+		
+			var URL = `http://www.youtube.com/embed/${this.id}`	
+			document.querySelector('#player').setAttribute("src", URL)
+			playFullscreen()
 			})
 			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".video").appendChild(node)
@@ -379,6 +383,8 @@ document.querySelector('.search_youtube_button').addEventListener('click', funct
         alert('Search failed')
     }
 };	
+// close the search modal
+document.getElementById('myModal').style.display ="none"
 // Send the request with the search term.
 request.send(data)
 
