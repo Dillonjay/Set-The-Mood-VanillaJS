@@ -1,20 +1,36 @@
-	let data = JSON.stringify({ searchTerm : "love" });
-	let request = new XMLHttpRequest();
-	request.open('POST', '/search');
-	request.setRequestHeader('Content-Type', 'application/json');
-	request.onload = function() {
-    if (request.status === 200) {
+// All videos that are going to be appended to the page
+let videoInfo = [
+"p91kHbSksW4,https://i.ytimg.com/vi/p91kHbSksW4/hqdefault.jpg",
+"hs86eBCT4dI,https://i.ytimg.com/vi/hs86eBCT4dI/hqdefault.jpg",
+"4RUGmBxe65U,https://i.ytimg.com/vi/4RUGmBxe65U/hqdefault.jpg",
+"MY-f7whE_qE,https://i.ytimg.com/vi/MY-f7whE_qE/hqdefault.jpg",
+"vGbRxR03jV8,https://i.ytimg.com/vi/vGbRxR03jV8/hqdefault.jpg",
+"5eLcHJLDlI8,https://i.ytimg.com/vi/5eLcHJLDlI8/hqdefault.jpg",
+"f61PbjjVuF0,https://i.ytimg.com/vi/f61PbjjVuF0/hqdefault.jpg",
+"V4Oosy-ZtGY,https://i.ytimg.com/vi/V4Oosy-ZtGY/hqdefault.jpg",
+"_gp51lt9kdA,https://i.ytimg.com/vi/_gp51lt9kdA/hqdefault.jpg"
+]
+
+
+
+// Pre populate the page with playlists.
+let data = JSON.stringify({ searchTerm : "love" });
+let request = new XMLHttpRequest();
+request.open('POST', '/search');
+request.setRequestHeader('Content-Type', 'application/json');
+request.onload = function() {
+	if (request.status === 200) {
     	// Parse the payload.
-    	let payload = JSON.parse(request.response);
+   		let payload = JSON.parse(request.response);
     	// Select the playlists div so we can check if it is empty.
     	let myNode = document.querySelector(".playlists");
     	// Remove each child before populating with new data.
 		while (myNode.firstChild) {
     		myNode.removeChild(myNode.firstChild);
 		}
-      	// Loop through the playlists that we recieve from the server.
-        payload.playlists.items.forEach(item => {
-        	// Create a new div with a class of "playlistDiv"
+    	// Loop through the playlists that we recieve from the server.
+    	payload.playlists.items.forEach(item => {
+       		// Create a new div with a class of "playlistDiv"
         	let node = document.createElement("DIV"); 
         	node.setAttribute("class", "playlistDiv");
         	// Create new text for each playlist name.          
@@ -34,7 +50,16 @@
 			})
 			// Finally, append the whole div to the main playlist div.
         	document.querySelector(".playlists").appendChild(node)
-        })
+        	// Only put the videos on the page after the playlists have been populated.
+			videoInfo.forEach(item => {
+				document.querySelector('.video')
+				let node = document.createElement("IMG"); 
+			    node.setAttribute("class", "scene");
+			    node.setAttribute("id", `${item.slice(0,11)}`)
+			    node.setAttribute("src", `${item.slice(12, item.length)}`)
+			    document.querySelector('.video').appendChild(node)
+			})
+       	})
     } 
     else {
         alert('Search failed')
