@@ -8,7 +8,7 @@
 	<title>Set The Mood</title>
 </head>
 <body>
-
+	<!-- Header info -->
   	<div class="instruction">
 		<div id="player"></div>
 		<div id="cover">
@@ -20,38 +20,42 @@
 		</div>
 	</div>
 
+	<!-- Search content -->
 	<div class="searchInfo">
-	<h2 class="search_playlist">Search for a playlist</h2>
-  	<h2 class="your_playlsit">Show your playlists</h2> 
-  	<h2 class="choose_scene"> Choose a scene </h2><br> 
-  	<input class="search_spotify"></input>
-  	<button class="search">Search</button>
-  	<button class="personalPlaylist">Show</button>
-	<button class="youtube">Or Search Youtube</button>
-	<div id="myModal" class="modal">
+		<h2 class="search_playlist">Search for a playlist</h2>
+  		<h2 class="your_playlsit">Show your playlists</h2> 
+  		<h2 class="choose_scene"> Choose a scene </h2><br> 
+  		<input class="search_spotify"></input>
+  		<button class="search">Search</button>
+  		<button class="personalPlaylist">Show</button>
+		<button class="youtube">Or Search Youtube</button>
 
-  	<!-- Modal content -->
-  	<div class="modal-content">
-   		 <span class="close">×</span>
-    		<h1>Searh For Videos</h1>
-    		<input class="search_youtube"></input>
-    		<button class="search_youtube_button">Search</button>
-  	</div>
+  		<!-- Modal content -->
+		<div id="myModal" class="modal">
+  			<div class="modal-content">
+   				<span class="close">×</span>
+    			<h1>Searh For Videos</h1>
+    			<input class="search_youtube"></input>
+    			<button class="search_youtube_button">Search</button>
+  			</div>
 
+		</div>
 	</div>
-	</div>
+
+	<!-- Side Spotify player -->
 	<div id="mySidenav" class="sidenav">
-  	<a href="" class="closebtn">&times;</a>
-	<iframe class ="spotifyIframe" src="" width="300" height="650" frameborder="0" allowtransparency="true"></iframe>
+  		<a href="" class="closebtn">&times;</a>
+		<iframe class ="spotifyIframe" src="" width="300" height="650" frameborder="0" allowtransparency="true"></iframe>
 	</div>
-
+	
+	<!-- Videos and playlist display-->
 	<div class="test">
-	<div class="playlists">	
-	</div>
-  	<div class="video">
+		<div class="playlists"></div>
+  		<div class="video"></div>
  	</div>
-  </div>
-  <footer> </footer>
+	<!-- Footer -->
+  	<footer> 
+  	</footer>
 	<script src="main.js"></script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 </body>

@@ -62,6 +62,11 @@ request.onload = function() {
 			    node.setAttribute("class", "scene");
 			    node.setAttribute("id", `${item.slice(0,11)}`)
 			    node.setAttribute("src", `${item.slice(12, item.length)}`)
+			    node.addEventListener('click', function() {
+				var URL = `http://www.youtube.com/embed/${this.id}`	
+				document.querySelector('#player').setAttribute("src", URL)
+				playFullscreen()
+				})
 			    document.querySelector('.video').appendChild(node)
 			})
 			// Place open sidbar button on the page.
@@ -291,7 +296,6 @@ function onPlayerReady(event) {
 function setupListener (){
 document.querySelectorAll('.scene').forEach( scene => {
 	scene.addEventListener('click', function() {
-	console.log(this.id)
 	var URL = `http://www.youtube.com/embed/${this.id}`	
 	document.querySelector('#player').setAttribute("src", URL)
 	playFullscreen()
