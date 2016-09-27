@@ -8,17 +8,18 @@ const swig = require('swig');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const path = require('path');
 const consolidate = require('consolidate');
-const User = require('./models/User.js')
+const User = require('./models/User.js');
+const envKeys = require('../client/env/config.js')
 
 //  Use let to allow the port variable to be changed when hoisted.
 let port = process.env.PORT || 8080;
 
 /************************ Api Keys ********************************/
 
-const spotifyKey = 'b40cea95ad7143298ef925b6b2c80ab6';
-const spotifySecret = '5e044bf177914eb3b2b04fc437c4d6d2';
+const spotifyKey = envKeys.spotifyKey;
+const spotifySecret = envKeys.spotifySecret;
+const youtubeKey = envKeys.youtubeKey;
 /******************************************************************/
-
 
 /************************ Set up Passport *************************/
 
@@ -113,10 +114,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/home', function(req, res) {
-
   // Only send the photo and name to the client side.
   let userInfo = User.welcomeUser(req.user)
-
     // If there is a user, render the home view, otherwise render the landing view.
    Object.keys(userInfo).length > 0 ? res.render('home', { user: userInfo }) : res.render('landing');
 
@@ -124,7 +123,6 @@ app.get('/home', function(req, res) {
 
 // Send main.js file when requested on with index.html render.
 app.get('/main.js', function(req, res) {
-
   res.sendFile(path.join(__dirname + '/../client/public/main.js'))
 })
 // Send main.css file when requested with index.html render.
@@ -139,10 +137,9 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+// Grab a users playlists.
 app.get('/getUserPlaylists', function (req, res) {
- 
   User.grabId(req.user).then(function(info){
-
   request({
     url: `https://api.spotify.com/v1/users/${info.id}/playlists`, 
     method: 'GET', 
@@ -159,10 +156,8 @@ app.get('/getUserPlaylists', function (req, res) {
  })
 })
 
-
+// Search spotify for playlists
 app.post('/search', function(req, res) {
-
-
   let URL = `https://api.spotify.com/v1/search?q=${req.body.searchTerm}&type=playlist`
   request(URL, function(error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -174,13 +169,10 @@ app.post('/search', function(req, res) {
       }
    })
 }); 
+
 // search youtube
-
 app.post('/search/youtube', function(req, res) {
-
-  let URL = `https://www.googleapis.com/youtube/v3/search?&q=${req.body.searchTerm}&type=video&key=AIzaSyCos2JdoVxT-7xA2AK9Whe8zXuVjDY7P2c&part=snippet`
-  console.log('here we go', req.body.searchTerm)
-
+  let URL = `https://www.googleapis.com/youtube/v3/search?&q=${req.body.searchTerm}&type=video&key=${youtubeKey}&part=snippet`
   request(URL, function(error, response, body) {
       if (!error && response.statusCode == 200) {
 
