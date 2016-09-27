@@ -16,9 +16,9 @@ let port = process.env.PORT || 8080;
 
 /************************ Api Keys ********************************/
 
-const spotifyKey = envKeys.spotifyKey;
-const spotifySecret = envKeys.spotifySecret;
-const youtubeKey = envKeys.youtubeKey;
+const spotifyKey = process.env.SPOTIFYKEY || envKeys.spotifyKey;
+const spotifySecret = process.env.SPOTIFYSECRET || envKeys.spotifySecret;
+const youtubeKey = process.env.YOUTUBEKEY || envKeys.youtubeKey;
 /******************************************************************/
 
 /************************ Set up Passport *************************/

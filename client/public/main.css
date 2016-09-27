@@ -1,9 +1,17 @@
-/******* API For flowershops or choclate shops nearby!*********/
-
+/********** LANDING PAGE ********?
 /******************************************************************************************* LANDING PAGE ***************************/
 .landing {
 	background-color:black;
     font-family:Montserrat,Arial;
+    text-align:center;
+}
+.landingTitle {
+    font-size:50px;
+    display:inline;
+}
+.landingLogin {
+    text-decoration:none;
+    display:inline;
 }
 
 /*grey
@@ -11,10 +19,9 @@
 
 green
 #1DB954*/
-
-
-
 /*****************************************************************/
+
+
 body {
     background-color:black;
     color:white;
@@ -103,7 +110,7 @@ button:focus {
 
 input {
     border-radius:25px;
-    border-color:black;
+    border-color:blackxx:;
     width:13vw;
     height:3vh;
 }
@@ -302,15 +309,6 @@ input:focus {
     margin-left: 50px;
 }
 
-
-
-
-
-
-
-footer {
-    border:solid black 3px;  
-}
 
 
 
