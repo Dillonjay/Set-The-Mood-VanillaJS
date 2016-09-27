@@ -2,8 +2,14 @@
 /******************************************************************************************* LANDING PAGE ***************************/
 .landing {
 	background-color:black;
+    background-image:url('/spotifyLanding');
+    background-repeat:no-repeat;
+    background-position:0 20vh;
     font-family:Montserrat,Arial;
     text-align:center;
+    margin-right:10vw;
+    margin-left:10vw;
+    border-bottom:solid #1DB954 1px; 
 }
 .landingTitle {
     font-size:50px;
@@ -12,6 +18,7 @@
 .landingLogin {
     text-decoration:none;
     display:inline;
+    margin-left:10vw;
 }
 
 /*grey

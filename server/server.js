@@ -129,10 +129,11 @@ app.get('/main.js', function(req, res) {
 app.get('/main.css', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/main.css'))
 })
-// Send image file
+// Send image for landing page.
 app.get('/spotifyLanding', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/Spotify_Icon_RGB_Green.png'))
 })
+// Send image for main page.
 app.get('/spotify', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/spotify.jpg'))
 })
