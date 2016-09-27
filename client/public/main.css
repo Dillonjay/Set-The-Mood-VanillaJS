@@ -197,7 +197,7 @@ input:focus {
     width:100%;
     height:100%;
     background-color:black;
-    background-image:url("https://www.hovero.com/wp-content/uploads/2014/04/spotify-new.jpg") ;
+    background-image:url("/spotify") ;
     background-position: 51vw 0;
     background-size: 30vw 21vh;
     background-repeat:no-repeat; 

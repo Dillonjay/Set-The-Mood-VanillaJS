@@ -129,7 +129,13 @@ app.get('/main.js', function(req, res) {
 app.get('/main.css', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/main.css'))
 })
-
+// Send image file
+app.get('/spotifyLanding', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/public/Spotify_Icon_RGB_Green.png'))
+})
+app.get('/spotify', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/public/spotify.jpg'))
+})
 // Logout a user.
 app.get('/logout', function(req, res) {
   // Destroy a users session and redirect to the homepage.
