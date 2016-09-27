@@ -9,7 +9,6 @@
     text-align:center;
     margin-right:10vw;
     margin-left:10vw;
-    border-bottom:solid #1DB954 1px; 
 }
 .landingTitle {
     font-size:50px;
@@ -20,7 +19,12 @@
     display:inline;
     margin-left:10vw;
 }
-
+video {
+    margin-left:45vw; 
+}
+hr {
+    color:#1DB954 ;
+}
 /*grey
 #828282
 

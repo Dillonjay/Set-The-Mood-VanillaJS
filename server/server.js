@@ -133,6 +133,9 @@ app.get('/main.css', function(req, res) {
 app.get('/spotifyLanding', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/Spotify_Icon_RGB_Green.png'))
 })
+app.get('/movie', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/public/example1.mov'))
+})
 // Send image for main page.
 app.get('/spotify', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/spotify.jpg'))
