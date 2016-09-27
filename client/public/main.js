@@ -260,6 +260,7 @@ document.querySelector('.personalPlaylist').addEventListener('click', function()
 request.send();
 })
 
+
 // Loop through the array of elements with the class name of scene.
 // Attach an event listener on each of them.
 document.querySelectorAll('.scene').forEach( scene => {
@@ -312,7 +313,7 @@ function playFullscreen (){
   }
 }
 
-//////POP UPPPP/////////////////
+//////POP UP/////////////////
 
 var modal = document.getElementById('myModal');
 
@@ -393,4 +394,58 @@ document.getElementById('myModal').style.display ="none"
 request.send(data)
 
 })
+// Also listen for enter key press.
+document.querySelector('.search_youtube').addEventListener('keypress', function(e) {
+	var key = e.which || e.keyCode;
+    if (key === 13) {
+	let term = document.querySelector(".search_youtube").value;
+	// Clear input value.
+    document.querySelector('.search_youtube').value = "";
+	// Create a stringified object to send to the server.
+	let data = JSON.stringify({ searchTerm : term });
+	let request = new XMLHttpRequest();
+	request.open('POST', '/search/youtube');
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.onload = function() {
+    if (request.status === 200) {
+    	// Parse the payload.
+    	let payload = JSON.parse(request.response);
+   
+    	
 
+    	// Clear all videos from the page.
+		let video = document.querySelector(".video");
+    		// Remove each child before populating with new data.
+		while (video.firstChild) {
+    		video.removeChild(video.firstChild);
+    	}
+      	//Loop through the playlists that we recieve from the server.
+        payload.items.forEach(item => {
+       
+        	// Create a new div with a class of "playlistDiv"
+        	let node = document.createElement("IMG"); 
+        	node.setAttribute("class", "scene");
+        	node.setAttribute("id", `${item.id.videoId}`);
+        	node.setAttribute("src", `${item.snippet.thumbnails.high.url}`)
+        	// Create new text for each playlist name.          
+
+			node.addEventListener("click" , function() {
+		
+			var URL = `http://www.youtube.com/embed/${this.id}`	
+			document.querySelector('#player').setAttribute("src", URL)
+			playFullscreen()
+			})
+			// Finally, append the whole div to the main playlist div.
+        	document.querySelector(".video").appendChild(node)
+        })
+    } 
+    else {
+        alert('Search failed')
+    }
+};	
+	// close the search modal
+	document.getElementById('myModal').style.display ="none"
+	// Send the request with the search term.
+	request.send(data)
+	}
+})

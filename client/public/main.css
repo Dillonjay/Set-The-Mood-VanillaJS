@@ -103,6 +103,7 @@ button:focus {
 
 input {
     border-radius:25px;
+    border-color:black;
     width:13vw;
     height:3vh;
 }
@@ -141,7 +142,6 @@ input:focus {
     margin-top:0;
 }
 
-/* The Close Button */
 .close {
     color: #aaaaaa;
     float: right;
@@ -301,6 +301,10 @@ input:focus {
     font-size: 36px;
     margin-left: 50px;
 }
+
+
+
+
 
 
 
