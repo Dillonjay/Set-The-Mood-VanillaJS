@@ -4,11 +4,11 @@
 	background-color:black;
     background-image:url('/spotifyLanding');
     background-repeat:no-repeat;
-    background-position:0 20vh;
+    background-position:0 15vh;
     font-family:Montserrat,Arial;
     text-align:center;
-    margin-right:10vw;
-    margin-left:10vw;
+    margin-right:8vw;
+    margin-left:8vw;
 }
 .landingTitle {
     font-size:50px;
@@ -20,11 +20,15 @@
     margin-left:10vw;
 }
 video {
-    margin-left:45vw; 
+    margin-top:3vh;
+    margin-left:48vw; 
 }
-hr {
-    color:#1DB954 ;
+.textLanding {
+    margin-left:48vw;
+    line-height:110%;
+    text-align:left;
 }
+
 /*grey
 #828282
 

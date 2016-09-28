@@ -108,11 +108,11 @@ app.get('/callback',
   function(req, res) {
     res.redirect('/home');
   });
-
+// Main endpoint.
 app.get('/', function(req, res) {
     res.render('landing');
 });
-
+// On successful login.
 app.get('/home', function(req, res) {
   // Only send the photo and name to the client side.
   let userInfo = User.welcomeUser(req.user)
@@ -125,21 +125,27 @@ app.get('/home', function(req, res) {
 app.get('/main.js', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/main.js'))
 })
+
 // Send main.css file when requested with index.html render.
 app.get('/main.css', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/main.css'))
 })
+
 // Send image for landing page.
 app.get('/spotifyLanding', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/Spotify_Icon_RGB_Green.png'))
 })
+
+// Send the movie for the landing page.
 app.get('/movie', function(req, res) {
-  res.sendFile(path.join(__dirname + '/../client/public/example1.mov'))
+  res.sendFile(path.join(__dirname + '/../client/public/landingVideo.mov'))
 })
+
 // Send image for main page.
 app.get('/spotify', function(req, res) {
   res.sendFile(path.join(__dirname + '/../client/public/spotify.jpg'))
 })
+
 // Logout a user.
 app.get('/logout', function(req, res) {
   // Destroy a users session and redirect to the homepage.
